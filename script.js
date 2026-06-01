@@ -17,20 +17,22 @@ const submitbtn = document.getElementById('calculate');
 
 const resultArea = document.getElementById('result-box');
 const result = document.getElementById('result');
-console.log(resultArea);
-console.log(result);
+// console.log(resultArea);
+// console.log(result);
 // console.log(foods.apple);
 
 submitbtn.addEventListener('click' , () => {
-    currentFoodInput = foodInput.value;
-    currentQuanInput = quanInput.valueAsNumber;
+    const currentFoodInput = foodInput.value;
+    const currentQuanInput = quanInput.valueAsNumber;
     // console.log(currentFoodInput);
     // console.log(currentQuanInput);
 
     if(currentFoodInput.toLowerCase() in foods && currentQuanInput > 0) {
-        foodCalorie = foods[currentFoodInput.toLowerCase()];
-        calories = foodCalorie * currentQuanInput;
+        const foodCalorie = foods[currentFoodInput.toLowerCase()];
+        const calories = foodCalorie * currentQuanInput;
         result.textContent = "The Total calorie Is " + calories;
+    } else if(currentQuanInput <= 0) {
+        result.textContent = "Error : Please Enter Valid Quantity ( Greater Than 0 )";
     } else {
         result.textContent = "Error : Please Enter Valid Food Item";
     }

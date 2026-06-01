@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -11,7 +12,7 @@
     height: 100vh;
 }
 
-#calculater-container {
+#calculator-container {
     /* display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,7 +23,7 @@
     background-color: rgb(160, 255, 151);
 }
 
-#calculater-container h1 {
+#calculator-container h1 {
     margin-bottom: 20px;
     text-align: center;
 }
@@ -48,6 +49,7 @@
     background-color: skyblue;
     color: black;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .input-container input:first-child {
