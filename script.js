@@ -27,10 +27,12 @@ submitbtn.addEventListener('click' , () => {
     // console.log(currentFoodInput);
     // console.log(currentQuanInput);
 
-    if(currentQuanInput > 0) {
-        foodCalorie = foods[currentFoodInput];
+    if(currentFoodInput.toLowerCase() in foods && currentQuanInput > 0) {
+        foodCalorie = foods[currentFoodInput.toLowerCase()];
         calories = foodCalorie * currentQuanInput;
         result.textContent = "The Total calorie Is " + calories;
+    } else {
+        result.textContent = "Error : Please Enter Valid Food Item";
     }
 
 });
