@@ -11,10 +11,13 @@
         <div id="calculator-container">
             <h1>🌻 Calorie Calculator 🌻</h1>
             <div id="food-container">
+                <div id="food-row">
                     <div class="input-container">
                         <input type="text" name="Food" id="food" placeholder="Enter food item" required class="food-items">
-                        <input type="number" name="Quantity" id="quantity" placeholder="Enter Quantity" required class="food-quantity" required>
+                        <input type="number" name="Quantity" id="quantity" placeholder="Enter Quantity" class="food-quantity" required>
+                        <button id="addRow" title="Add More">+</button>
                     </div>
+                </div>
                 <button id="calculate">Calculate</button>
                 <div id="result-box">
                     <h3 id="result"></h3>
