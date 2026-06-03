@@ -7,10 +7,17 @@ const foods = {
 };
 
 // For One Row Selection
-const foodInput = document.getElementById('food');
-const quanInput = document.getElementById('quantity');
+// const foodInput = document.getElementById('food');
+// const quanInput = document.getElementById('quantity');
 // console.log(foodInput);
 // console.log(quanInput);
+
+// Multiple Row Selection
+// This Query Selection Will Not Work Because It Will Return A Node List Of All The Inputs With The Class Name 'food-items' And 'food-quantity' Respectively But It'll Not Select The Newly Added Row Because It Is Outside Of The DOM When The Page Is Loaded So We Need To Move This Query Selection Inside The Event Listener Of The Submit Button To Get The Updated Node List Each Time We Click The Button.
+// const foodInputs = document.querySelectorAll('.food-items[type="text"]');
+// const quanInputs = document.querySelectorAll('.food-quantity[type="number"]');
+// console.log(foodInputs);
+// console.log(quanInputs);
 
 const submitbtn = document.getElementById('calculate');
 // console.log(submitbtn);
@@ -21,21 +28,48 @@ const result = document.getElementById('result');
 // console.log(result);
 // console.log(foods.apple);
 
-submitbtn.addEventListener('click' , () => {
-    const currentFoodInput = foodInput.value;
-    const currentQuanInput = quanInput.valueAsNumber;
-    // console.log(currentFoodInput);
-    // console.log(currentQuanInput);
+// For One Row Calorie Calculation
 
-    if(currentFoodInput.toLowerCase() in foods && currentQuanInput > 0) {
-        const foodCalorie = foods[currentFoodInput.toLowerCase()];
-        const calories = foodCalorie * currentQuanInput;
-        result.textContent = "The Total calorie Is " + calories;
-    } else if(currentQuanInput <= 0) {
-        result.textContent = "Error : Please Enter Valid Quantity ( Greater Than 0 )";
-    } else {
-        result.textContent = "Error : Please Enter Valid Food Item";
-    }
+// submitbtn.addEventListener('click' , () => {
+//     const currentFoodInput = foodInput.value;
+//     const currentQuanInput = quanInput.valueAsNumber;
+//     // console.log(currentFoodInput);
+//     // console.log(currentQuanInput);
+
+//     if(currentFoodInput.toLowerCase() in foods && currentQuanInput > 0) {
+//         const foodCalorie = foods[currentFoodInput.toLowerCase()];
+//         const calories = foodCalorie * currentQuanInput;
+//         result.textContent = "The Total calorie Is " + calories;
+//     } else if(currentQuanInput <= 0) {
+//         result.textContent = "Error : Please Enter Valid Quantity ( Greater Than 0 )";
+//     } else {
+//         result.textContent = "Error : Please Enter Valid Food Item";
+//     }
+
+// });
+
+// For Multiple Row Calorie Calculation
+
+submitbtn.addEventListener('click' , () => {
+
+    let totalCalories = 0;
+
+    const foodInputs = document.querySelectorAll('.food-items[type="text"]');
+    const quanInputs = document.querySelectorAll('.food-quantity[type="number"]');
+
+    foodInputs.forEach((foodElement , index) => {
+        const foodValue = foodElement.value.toLowerCase().trim();
+        const quantityValue = quanInputs[index].valueAsNumber;
+
+        if(foods && foodValue in foods && quantityValue > 0) {
+            totalCalories += foods[foodValue] * quantityValue;
+        } else {
+            result.textContent = "Error : Please Enter Valid Food Item And Quantity ( Greater Than 0 ) In Row " + (index + 1);
+            return;
+        }
+    });
+
+    result.textContent = "The Total Calories : " + totalCalories;
 
 });
 
@@ -47,7 +81,7 @@ const inputRows = document.getElementById('food-row')
 // console.log(inputContainer);
 
 addBtn.addEventListener('click' , () => {
-    // Creating InputContainer
+    // Creating Inputs
     const newInputContainer = document.createElement('div');
     newInputContainer.className = 'input-container';
     
@@ -57,7 +91,7 @@ addBtn.addEventListener('click' , () => {
     newInputFood.name = 'Food';
     newInputFood.placeholder = 'Enter food item';
     newInputFood.required = true;
-    newInputFood.className = 'food-quantity';
+    newInputFood.className = 'food-items';
 
     const newQuantityFood = document.createElement('input');
     newQuantityFood.type = 'number';
@@ -79,3 +113,9 @@ addBtn.addEventListener('click' , () => {
     newInputContainer.appendChild(removeBtn);
 
 });
+
+// // Remove The Row Logic 
+
+// const removeBtn = document.querySelectorAll('.removeRow');
+// console.log(removeBtn);
+
