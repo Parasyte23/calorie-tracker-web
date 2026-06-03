@@ -57,19 +57,49 @@ submitbtn.addEventListener('click' , () => {
     const foodInputs = document.querySelectorAll('.food-items[type="text"]');
     const quanInputs = document.querySelectorAll('.food-quantity[type="number"]');
 
-    foodInputs.forEach((foodElement , index) => {
-        const foodValue = foodElement.value.toLowerCase().trim();
-        const quantityValue = quanInputs[index].valueAsNumber;
+    // 1.
+    // Using ForEach Loop Was Causing An Logic Bug. Which Was That "Return Does Not Break A forEach Loop".
+    // When you use a forEach loop, you are passing a callback function (foodElement, index) => { ... } that runs once for every single item in the array.
+    // When you use return; inside that callback, you are only exiting that specific function execution for that specific item. You are not exiting the forEach loop itself.
+    // In a standard for loop, return or break stops the entire loop dead in its tracks.
+    // In a forEach loop, return acts exactly like continue does in a normal loop. It just skips the rest of the current cycle and immediately moves on to the next item in the array.
 
-        if(foods && foodValue in foods && quantityValue > 0) {
-            totalCalories += foods[foodValue] * quantityValue;
+    // 2. The Error Message gets overwritten
+    // Because the loop doesn't actually stop, here is what happens step-by-step if row 1 has an error but row 2 is valid:
+    // 1. Row 1 (Error): The else block triggers. result.textContent is set to the Error message. return; executes, skipping the rest of Row 1.
+    // 2. Row 2 (Valid): The loop continues anyway! The code processes Row 2 and adds to totalCalories.
+    // 3. After the loop: If you have code beneath this loop that sets result.textContent = "Total Calories: " + totalCalories;, that code will execute immediately after the loop finishes. Your error message was technically on the screen, but it was overwritten by the final total a few milliseconds later, making it look like the else block never fired.
+
+    // foodInputs.forEach((foodElement , index) => {
+    //     const foodValue = foodElement.value.toLowerCase().trim();
+    //     const quantityValue = quanInputs[index].valueAsNumber;
+
+    //     if(foods && foodValue in foods && quantityValue > 0) {
+    //         totalCalories += foods[foodValue] * quantityValue;
+    //     } else {
+    //         result.textContent = "Error : Please Enter Valid Food Item And Quantity ( Greater Than 0 ) In Row " + (index + 1);
+    //         return;
+    //     }
+    // });
+
+    // Fix :-
+    // To achieve goal of stopping the entire process the moment an error is found, we need to swap the forEach loop for a traditional for loop. A traditional for loop allows us to use return (to exit the entire surrounding function) or break (to entirely stop the loop).
+    for(let i = 0; i < foodInputs.length; i++) {
+        foodElem = foodInputs[i].value.toLowerCase().trim();
+        quanElem = quanInputs[i].valueAsNumber;
+
+        if(foods && foodElem in foods && quanElem > 0) {
+            totalCalories += foods[foodElem] * quanElem;
         } else {
-            result.textContent = "Error : Please Enter Valid Food Item And Quantity ( Greater Than 0 ) In Row " + (index + 1);
+            result.textContent = "Error : Please Enter Valid Food Item And Quantity \(Greater Than 0) In Row " + (i + 1);
+
+            // This 'return' will now successfully stop the entire function, 
+            // preventing the loop from continuing and preventing any final output code from running.
             return;
         }
-    });
+    }
 
-    result.textContent = "The Total Calories : " + totalCalories;
+    result.textContent = "The Total Calories Is " + totalCalories;
 
 });
 
@@ -113,9 +143,3 @@ addBtn.addEventListener('click' , () => {
     newInputContainer.appendChild(removeBtn);
 
 });
-
-// // Remove The Row Logic 
-
-// const removeBtn = document.querySelectorAll('.removeRow');
-// console.log(removeBtn);
-
