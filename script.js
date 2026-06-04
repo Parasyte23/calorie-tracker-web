@@ -144,20 +144,39 @@ addBtn.addEventListener('click' , () => {
     newInputContainer.appendChild(removeBtn);
 
     // Remove The Row Logic
+    //  * * Original Logic: 
+    //  * Queried all remove buttons and input containers on the page, then 
+    //  * looped through them to match indexes and delete the corresponding row.
+    //  * * Why it was refactored:
+    //  * Nesting `addEventListener` inside the Add Button click event created a bug. 
+    //  * Every time a new row was added, brand new event listeners were attached 
+    //  * to ALL existing remove buttons. This caused buttons to fire multiple times 
+    //  * at once and broke the index syncing when rows were deleted out of order.
+
+    // removeBtn.addEventListener('click' , () => {
+    //     const inputContainerArray = document.querySelectorAll('.input-container');
+    //     const removeBtnArray = document.querySelectorAll('.removeRow');
+    //     // console.log('The Fuck man');
+    //     // console.log(inputContainerArray.length);
+    //     // console.log(removeBtnArray);
+
+    //     removeBtnArray.forEach((btn , index) => {
+    //         btn.addEventListener('click' , () => {
+    //             inputContainerArray[index + 1].remove();
+    //             console.log("Row No. " + (index + 1) + " Is Deleted");
+    //         });
+    //     });
+
+    // });
+
+     //  * * The Solution:
+    //  * Replaced this logic with JavaScript closures. The current implementation 
+    //  * links the remove button directly to its specific parent container at the 
+    //  * time of creation, eliminating the need to track indexes or query arrays.
+    //  */
+
     removeBtn.addEventListener('click' , () => {
-        const inputContainerArray = document.querySelectorAll('.input-container');
-        const removeBtnArray = document.querySelectorAll('.removeRow');
-        // console.log('The Fuck man');
-        // console.log(inputContainerArray.length);
-        // console.log(removeBtnArray);
-
-        removeBtnArray.forEach((btn , index) => {
-            btn.addEventListener('click' , () => {
-                inputContainerArray[index + 1].remove();
-                console.log("Row No. " + (index + 1) + " Is Deleted");
-            });
-        });
-
+        newInputContainer.remove();
     });
 
 });
