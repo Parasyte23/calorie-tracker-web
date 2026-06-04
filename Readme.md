@@ -2,12 +2,13 @@
 
 A calorie calculator that helps users estimate daily calorie intake based on food items and quantities.
 
-## Features (Planned)
-- Add food items
-- Enter quantity
+## Features
+
+- Add multiple food items
+- Enter food quantity
 - Calculate total calories
-- Display calorie summary
-- Responsive design
+- Remove food rows
+- Responsive user interface
 
 ## Tech Stack
 - HTML
@@ -21,4 +22,4 @@ A calorie calculator that helps users estimate daily calorie intake based on foo
 - Understand Git and GitHub workflow
 
 ## Status
-🚧 Currently under development.
+Version 0.1 Prototype Complete.
