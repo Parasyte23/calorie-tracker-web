@@ -135,11 +135,29 @@ addBtn.addEventListener('click' , () => {
     removeBtn.className = 'removeRow';
     removeBtn.innerText = '-';
 
+    // Appending The Created Elements To The DOM
     inputRows.appendChild(newInputContainer);
     newInputContainer.appendChild(newInputFood);
     newInputContainer.appendChild(document.createTextNode(" "));
     newInputContainer.appendChild(newQuantityFood);
     newInputContainer.appendChild(document.createTextNode(" "));
     newInputContainer.appendChild(removeBtn);
+
+    // Remove The Row Logic
+    removeBtn.addEventListener('click' , () => {
+        const inputContainerArray = document.querySelectorAll('.input-container');
+        const removeBtnArray = document.querySelectorAll('.removeRow');
+        // console.log('The Fuck man');
+        // console.log(inputContainerArray.length);
+        // console.log(removeBtnArray);
+
+        removeBtnArray.forEach((btn , index) => {
+            btn.addEventListener('click' , () => {
+                inputContainerArray[index + 1].remove();
+                console.log("Row No. " + (index + 1) + " Is Deleted");
+            });
+        });
+
+    });
 
 });
