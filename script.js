@@ -24,6 +24,8 @@ const submitbtn = document.getElementById('calculate');
 
 const resultArea = document.getElementById('result-box');
 const result = document.getElementById('result');
+const eachResult = document.getElementById('each-result');
+const calorieListItem = document.getElementById('calorie-list');
 // console.log(resultArea);
 // console.log(result);
 // console.log(foods.apple);
@@ -57,6 +59,10 @@ submitbtn.addEventListener('click' , () => {
     const foodInputs = document.querySelectorAll('.food-items[type="text"]');
     const quanInputs = document.querySelectorAll('.food-quantity[type="number"]');
 
+    // For Each Food Calorie 
+    const foodItem = [];
+    const foodCalorie = [];
+
     // 1.
     // Using ForEach Loop Was Causing An Logic Bug. Which Was That "Return Does Not Break A forEach Loop".
     // When you use a forEach loop, you are passing a callback function (foodElement, index) => { ... } that runs once for every single item in the array.
@@ -85,13 +91,15 @@ submitbtn.addEventListener('click' , () => {
     // Fix :-
     // To achieve goal of stopping the entire process the moment an error is found, we need to swap the forEach loop for a traditional for loop. A traditional for loop allows us to use return (to exit the entire surrounding function) or break (to entirely stop the loop).
     for(let i = 0; i < foodInputs.length; i++) {
-        foodElem = foodInputs[i].value.toLowerCase().trim();
-        quanElem = quanInputs[i].valueAsNumber;
+        let foodElem = foodInputs[i].value.toLowerCase().trim();
+        let quanElem = quanInputs[i].valueAsNumber;
 
         if(foods && foodElem in foods && quanElem > 0) {
+            foodItem.push(foodElem);
+            foodCalorie.push(foods[foodElem] * quanElem);
             totalCalories += foods[foodElem] * quanElem;
         } else {
-            result.textContent = "Error : Please Enter Valid Food Item And Quantity \(Greater Than 0) In Row " + (i + 1);
+            result.innerText = "Error : Please Enter Valid Food Item And \nQuantity (Greater Than 0) In Row " + (i + 1);
 
             // This 'return' will now successfully stop the entire function, 
             // preventing the loop from continuing and preventing any final output code from running.
@@ -99,8 +107,19 @@ submitbtn.addEventListener('click' , () => {
         }
     }
 
-    result.textContent = "The Total Calories Is " + totalCalories;
-
+    result.innerText = "The Total Calories Is " + totalCalories;
+    if(foodItem.length > 1) {
+        eachResult.innerText = "Calories Breakdown For Each Item : \n";
+        calorieListItem.innerHTML = "";
+        foodItem.forEach((food , index) => {
+            const eachFoodCalorie = document.createElement('li');
+            calorieListItem.append(eachFoodCalorie);
+            eachFoodCalorie.innerText = `${food} : ${foodCalorie[index]} Calories ( ${quanInputs[index].valueAsNumber} Quantity )`;
+        });
+    } else {
+        eachResult.innerText = "";
+        calorieListItem.innerHTML = "";
+    }
 });
 
 // Add The Another Row Logic 

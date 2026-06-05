@@ -76,3 +76,8 @@
 .input-container #addRow:hover , .removeRow:hover {
     transform: scale(0.9);
 }
+
+#result-box #result {
+    margin-bottom: 20px;
+    text-align: center;
+}
