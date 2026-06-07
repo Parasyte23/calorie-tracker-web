@@ -122,6 +122,14 @@ submitbtn.addEventListener('click' , () => {
     }
 });
 
+// Keyboard Support , Press Enter Key For Calculation
+
+document.addEventListener('keydown' , (event) => {
+    if(event.key === 'Enter') {
+        submitbtn.click();
+    }
+});
+
 // Add The Another Row Logic 
 
 const addBtn = document.getElementById('addRow');
