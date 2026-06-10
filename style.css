@@ -44,6 +44,28 @@
     padding-right: 15px;
 }
 
+/* 1. The Scrollbar Container (Width of the track) */
+#food-row::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* 2. The Track (The background the scrollbar slides on) */
+#food-row::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* 3. The Thumb (The actual draggable part) */
+#food-row::-webkit-scrollbar-thumb {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(246, 94, 140);
+}
+
+/* 4. The Thumb on Hover */
+#food-row::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(249, 70, 123);
+}
+
 .input-container input {
     border: 2px black solid;
     padding: 5px 10px;
