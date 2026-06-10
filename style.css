@@ -21,6 +21,7 @@
     border: rgb(0,0,0) solid 2px;
     border-radius: 10px;
     background-color: rgb(160, 255, 151);
+    height: auto;
 }
 
 #calculator-container h1 {
@@ -33,6 +34,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: auto;
+    padding-bottom: 2rem;
+}
+
+#food-row {
+    max-height: 25vh;
+    overflow-y: auto;
+    padding-right: 15px;
 }
 
 .input-container input {

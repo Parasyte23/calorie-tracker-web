@@ -206,4 +206,12 @@ addBtn.addEventListener('click' , () => {
         newInputContainer.remove();
     });
 
+    // Was Good Logic For Big Screen But Can't Be Responsive For Mobiles
+    // And CSS Already Have Certain Property Called max-height Which Do Almost the Same Work As This Logic So I Commented It Out.
+    // const inputContainerArray = document.querySelectorAll('.input-container');
+    // if(inputContainerArray.length > 4) {
+    //     const foodRows = document.getElementById('food-row');
+    //     foodRows.style.cssText = "height: 25vh; overflow-y: auto;";
+    // }
+
 });
