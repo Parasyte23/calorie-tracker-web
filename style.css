@@ -42,6 +42,7 @@
     max-height: 25vh;
     overflow-y: auto;
     padding-right: 15px;
+    margin-bottom: 10px;
 }
 
 /* 1. The Scrollbar Container (Width of the track) */
@@ -84,7 +85,6 @@
 }
 
 .input-container input:first-child {
-    border: 2px black solid;
     margin-right: 15px;
 }
 
@@ -111,4 +111,186 @@
 #result-box #result {
     margin-bottom: 20px;
     text-align: center;
+}
+
+#result-box #calorie-list {
+    max-height: 15vh;
+    overflow-y: auto;
+}
+
+#result-box #calorie-list::-webkit-scrollbar {
+    width: 15px;
+}
+
+#result-box #calorie-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#result-box #calorie-list::-webkit-scrollbar-thumb {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(246, 94, 140);
+}
+
+#result-box #calorie-list::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(249, 70, 123);
+}
+
+/* TABLET VIEW: Put the largest max-width first */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+        /* background-color: bisque; */
+    }
+
+    #calculator-container {
+        padding: 20px 40px;
+        border: 1px solid black;
+    }
+
+    #calculator-container h1 {
+        font-size: 30px;
+    }
+
+    #food-row {
+        max-height: 25vh;
+        padding-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    #food-row::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    #food-row::-webkit-scrollbar-thumb {
+        border: 1px solid black;
+    }
+
+    .input-container input {
+        width: 100px;
+        font-size: 15px;
+        border: 1px solid black;
+        margin-bottom: 5px;
+    }
+
+    .input-container input:first-child {
+        margin-right: 8px;
+    }
+
+    .input-container #addRow {
+        font-size: 15px;
+        border: 1px solid black;
+    }
+
+    .input-container .removeRow {
+        font-size: 14px;
+        border: 1px solid black;
+    }
+
+    #food-container #calculate {
+        margin-bottom: 10px;
+        border: 1px solid black;
+        font-size: 10px;
+    }
+
+    #result-box h3 {
+        font-size: 20px;
+    }
+
+    #result-box #calorie-list {
+        max-height: 13vh;
+        overflow-y: auto;
+    }
+
+    #result-box #calorie-list::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    #result-box #calorie-list::-webkit-scrollbar-thumb {
+        border: 1px solid black;
+    }
+
+    #result-box #calorie-list li {
+        font-size: 17px;
+    }
+}
+
+/* MOBILE VIEW: Put the smallest max-width last to override the tablet */
+@media (max-width: 390px) {
+
+    body {
+        padding: 10px;
+        /* background-color: blueviolet; */
+    }
+
+    #calculator-container {
+        padding: 20px 40px;
+        border: 1px solid black;
+    }
+
+    #calculator-container h1 {
+        font-size: 20px;
+    }
+
+    #food-row {
+        max-height: 20vh;
+        padding-right: 7px;
+        margin-bottom: 7px;
+    }
+
+    #food-row::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    #food-row::-webkit-scrollbar-thumb {
+        border: 1px solid black;
+    }
+
+    .input-container input {
+        width: 100px;
+        font-size: 10px;
+        border: 1px solid black;
+        margin-bottom: 5px;
+    }
+
+    .input-container input:first-child {
+        margin-right: 5px;
+    }
+
+    .input-container #addRow {
+        font-size: 10px;
+        border: 1px solid black;
+    }
+
+    .input-container .removeRow {
+        font-size: 9px;
+        border: 1px solid black;
+    }
+
+    #food-container #calculate {
+        margin-bottom: 5px;
+        border: 1px solid black;
+        font-size: 10px;
+    }
+
+    #result-box h3 {
+        font-size: 15px;
+    }
+
+    #result-box #calorie-list {
+        max-height: 13vh;
+        overflow-y: auto;
+    }
+
+    #result-box #calorie-list::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    #result-box #calorie-list::-webkit-scrollbar-thumb {
+        border: 1px solid black;
+    }
+
+    #result-box #calorie-list li {
+        font-size: 12px;
+    }
 }

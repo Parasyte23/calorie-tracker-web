@@ -114,7 +114,7 @@ submitbtn.addEventListener('click' , () => {
         foodItem.forEach((food , index) => {
             const eachFoodCalorie = document.createElement('li');
             calorieListItem.append(eachFoodCalorie);
-            eachFoodCalorie.innerText = `${food} : ${foodCalorie[index]} Calories ( ${quanInputs[index].valueAsNumber} Quantity )`;
+            eachFoodCalorie.innerText = `${food.charAt(0).toUpperCase() + food.slice(1)} : ${foodCalorie[index]} Calories ( ${quanInputs[index].valueAsNumber} Quantity )`;
         });
     } else {
         eachResult.innerText = "";
