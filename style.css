@@ -216,7 +216,7 @@
 }
 
 /* MOBILE VIEW: Put the smallest max-width last to override the tablet */
-@media (max-width: 410px) {
+@media (max-width: 390px) {
 
     body {
         padding: 10px;
@@ -284,6 +284,84 @@
 
     #result-box #calorie-list::-webkit-scrollbar {
         width: 10px;
+    }
+
+    #result-box #calorie-list::-webkit-scrollbar-thumb {
+        border: 1px solid black;
+    }
+
+    #result-box #calorie-list li {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        padding: 10px;
+        /* background-color: blueviolet; */
+    }
+
+    #calculator-container {
+        padding: 15px 30px;
+        border: 1px solid black;
+    }
+
+    #calculator-container h1 {
+        font-size: 20px;
+    }
+
+    #food-row {
+        max-height: 15vh;
+        padding-right: 7px;
+        margin-bottom: 7px;
+    }
+
+    #food-row::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    #food-row::-webkit-scrollbar-thumb {
+        border: 1px solid black;
+    }
+
+    .input-container input {
+        width: 100px;
+        font-size: 10px;
+        border: 1px solid black;
+        margin-bottom: 5px;
+    }
+
+    .input-container input:first-child {
+        margin-right: 5px;
+    }
+
+    .input-container #addRow {
+        font-size: 9px;
+        border: 1px solid black;
+    }
+
+    .input-container .removeRow {
+        font-size: 8px;
+        border: 1px solid black;
+    }
+
+    #food-container #calculate {
+        margin-bottom: 5px;
+        border: 1px solid black;
+        font-size: 10px;
+    }
+
+    #result-box h3 {
+        font-size: 15px;
+    }
+
+    #result-box #calorie-list {
+        max-height: 13vh;
+        overflow-y: auto;
+    }
+
+    #result-box #calorie-list::-webkit-scrollbar {
+        width: 8px;
     }
 
     #result-box #calorie-list::-webkit-scrollbar-thumb {
