@@ -216,7 +216,7 @@
 }
 
 /* MOBILE VIEW: Put the smallest max-width last to override the tablet */
-@media (max-width: 390px) {
+@media (max-width: 410px) {
 
     body {
         padding: 10px;
