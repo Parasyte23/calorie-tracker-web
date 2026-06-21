@@ -73,6 +73,7 @@ submitbtn.addEventListener('click' , async () => {
 
                 if(data.error) {
                     result.innerText = data.error;
+                    submitbtn.disabled = false;
                     return;
                 }
 
