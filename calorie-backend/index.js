@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());    
 
 // 3. Define The Port ( The Frequency Your Server Listens To)
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // ---- Routes GO Here ----
 

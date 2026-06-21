@@ -84,12 +84,13 @@ submitbtn.addEventListener('click' , async () => {
             } catch(error) {
                 console.error(error);
                 result.innerText = "Backend Server is offline";
+                submitbtn.disabled = false;
                 return;
             }
 
         } else {
             result.innerText = "Error : Please Enter Valid Food Item And \nQuantity (Greater Than 0) In Row " + (i + 1);
-
+            submitbtn.disabled = false;
             return;
         }
     }
