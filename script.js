@@ -7,6 +7,8 @@
 // const foodInputs = document.querySelectorAll('.food-items[type="text"]');
 // const quanInputs = document.querySelectorAll('.food-quantity[type="number"]');
 
+const API_BASE_URL = "https://calorie-tracker-web-acu7.onrender.com"
+
 const submitbtn = document.getElementById('calculate');
 
 const resultArea = document.getElementById('result-box');
@@ -62,7 +64,7 @@ submitbtn.addEventListener('click' , async () => {
             try {
                 
                 const response = await fetch(
-                `http://localhost:5000/api/food/${foodElem}`
+                `${API_BASE_URL}/api/food/${foodElem}`
                 );
 
                 const data = await response.json();
