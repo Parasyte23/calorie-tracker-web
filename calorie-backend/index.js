@@ -43,7 +43,8 @@ app.get('/api/food/:foodName' , async (req , res) => {
         // const data = JSON.parse(text);
         const data = await response.json()
 
-        // console.log(JSON.stringify(data , null , 2));
+        // console.log("Food Found " , data.foods[0].description);
+        // console.log(data.foods[0].foodNutrients);
 
         // 3. The Safety Check (Preventing the Crash)
         if(!data.foods || data.foods.length === 0) {
@@ -59,11 +60,18 @@ app.get('/api/food/:foodName' , async (req , res) => {
             nutrient => nutrient.nutrientName.includes("Energy")
         );
 
-        const exactCalorie = calories ? calories.value : 0;
+        if(!calories) {
+            return res.status(404).json({
+                error : "Calorie Data Unavailable For This Food"
+            });
+        }
+
+        const exactCalorie = calories.value;
 
         // 5. Send The Clean , Simple Data Back To Your Frontend
         res.json({
             item: requestFood,
+            matchedFood: data.foods[0].description,
             calorie: exactCalorie,
             status: "Success!"
         });

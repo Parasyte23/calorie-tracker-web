@@ -72,7 +72,7 @@ submitbtn.addEventListener('click' , async () => {
                 console.log('Recieved : ' , data);
 
                 if(data.error) {
-                    result.innerText = `Food Not Found : ${foodElem}`;
+                    result.innerText = data.error;
                     return;
                 }
 
