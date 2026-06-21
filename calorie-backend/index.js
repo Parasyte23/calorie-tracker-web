@@ -1,12 +1,14 @@
 // 1. Import The Express Library
 const express = require('express');
 require('dotenv').config();
+const cors = require('cors');
 
 // 2. Initialize The Application
 const app = express();
+app.use(cors());    
 
 // 3. Define The Port ( The Frequency Your Server Listens To)
-const PORT = 3000;
+const PORT = 5000;
 
 // ---- Routes GO Here ----
 
